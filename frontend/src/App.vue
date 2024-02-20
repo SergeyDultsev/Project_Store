@@ -5,13 +5,8 @@ import HeaderApp from "@/components/HeaderApp.vue";
 
 <template>
   <HeaderApp></HeaderApp>
-  <div class="page">
-    <RouterView />
-  </div>
+  <RouterView />
 </template>
 
 <style scoped>
-.page{
-  background: #ECEEF6;
-}
 </style>

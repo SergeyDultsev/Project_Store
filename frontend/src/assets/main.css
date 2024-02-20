@@ -5,3 +5,16 @@
     max-width: 1320px;
     width: 100%;
 }
+
+.page{
+    padding: 50px 210px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 20px 0 0 0;
+}
+
+.page__tilte{
+    color: var(--main-blue-color);
+    text-align: center;
+    text-transform: uppercase;
+}

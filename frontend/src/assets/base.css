@@ -18,6 +18,7 @@ body {
 }
 
 a{
+  color: var(--main-blue-color);
   text-decoration: none;
 }
 

@@ -10,7 +10,8 @@ import Navitem from "@/components/Navitem.vue";
       <Navitem @click="$router.push('/basket')">Корзина</Navitem>
     </nav>
     <nav class="nav-list">
-      <Navitem @click="$router.push('/authorization')">Вход</Navitem>
+      <Navitem @click="$router.push('/authorization')">Авторизация</Navitem>
+      <Navitem @click="$router.push('/registration')">Регистариция</Navitem>
     </nav>
   </div>
 </template>
