@@ -13,18 +13,28 @@
 
 body {
   padding: 80px 0 0 80px;
-  background: var(--main-blue-color);
+  background: #efefef;
   height: 100vh;
 }
 
 a{
-  color: var(--main-blue-color);
+  color:var(--main-blue-color);
   text-decoration: none;
 }
 
 input, textarea{
   outline: none;
   border: none;
+}
+
+input{
+  padding: 10px 8px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+input::placeholder{
+  color: #48484f;
 }
 
 button{

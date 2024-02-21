@@ -6,15 +6,25 @@
     width: 100%;
 }
 
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
 .page{
-    padding: 50px 210px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    margin: 20px 0 0 0;
+    margin-top: 20px;
 }
 
 .page__tilte{
-    color: var(--main-blue-color);
+    color:var(--main-blue-color);
     text-align: center;
     text-transform: uppercase;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

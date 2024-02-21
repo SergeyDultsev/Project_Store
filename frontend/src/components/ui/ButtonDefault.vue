@@ -3,22 +3,25 @@
 </script>
 
 <template>
-  <a href="#" class="nav-item">
+  <button class="btn-default">
     <slot></slot>
-  </a>
+  </button>
 </template>
 
 <style scoped>
-.nav-item{
+.btn-default{
+  padding: 10px 8px;
+  border: 2px solid var(--main-blue-color);
   color: #FFFFFF;
   background: var(--main-blue-color);
   border-radius: 10px;
-  padding: 18px 30px;
+  width: 100%;
+}
+.btn-default:hover{
+  transition: all .3s;
+  background: #FFFFFF;
+  border: 2px solid var(--main-blue-color);
+  color: var(--main-blue-color);
 }
 
-.nav-item:hover{
-  transition: all .3s;
-  color: var(--main-blue-color);
-  background: rgba(255, 255, 255, 1);
-}
 </style>
