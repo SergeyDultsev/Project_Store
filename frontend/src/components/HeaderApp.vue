@@ -10,8 +10,11 @@ import NavList from "@/components/NavList.vue";
 
 <style scoped>
 .header{
+  position: sticky;
+  top: 0;
+  left: 0;
   width: 100%;
-  background: #f5f5f5;
+  background: rgba(245, 245, 245, 0.80);
   padding: 20px 0;
 }
 </style>

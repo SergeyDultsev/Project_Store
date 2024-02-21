@@ -1,15 +1,27 @@
 <script setup>
 import ProductList from "@/components/ProductList.vue";
 import ProductItemOrder from "@/components/ProductItemOrder.vue";
-import {ref} from "vue";
+
+import {onMounted, ref} from "vue";
+import axios from "axios";
 
 const orders = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(`https://jurapro.bhuser.ru/api-shop/products`);
+    orders.value = response.data;
+    console.log(orders)
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+});
 </script>
 
 <template>
   <section class="page">
     <ProductList>
-      <ProductItemOrder v-for="product in orders" :key="product" :product="product"></ProductItemOrder>
+      <ProductItemOrder v-for="product in orders.data" :key="product.id" :product="product"></ProductItemOrder>
     </ProductList>
   </section>
 </template>

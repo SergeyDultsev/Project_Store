@@ -12,7 +12,6 @@ import Navitem from "@/components/Navitem.vue";
     <nav class="nav-list">
       <Navitem @click="$router.push('/authorization')">Авторизация</Navitem>
       <Navitem @click="$router.push('/registration')">Регистариция</Navitem>
-      <Navitem @click="$router.push('/')">Выход</Navitem>
     </nav>
   </section>
 </template>
