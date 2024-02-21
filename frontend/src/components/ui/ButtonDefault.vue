@@ -10,7 +10,7 @@
 
 <style scoped>
 .btn-default{
-  padding: 10px 8px;
+  padding: 8px 6px;
   border: 2px solid var(--main-blue-color);
   color: #FFFFFF;
   background: var(--main-blue-color);

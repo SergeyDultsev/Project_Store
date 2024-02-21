@@ -3,17 +3,18 @@ import Navitem from "@/components/Navitem.vue";
 </script>
 
 <template>
-  <div class="nav-block">
+  <section class="nav-block">
     <nav class="nav-list">
       <Navitem @click="$router.push('/')">Каталог</Navitem>
       <Navitem @click="$router.push('/order')">Оформленные товары</Navitem>
-      <Navitem @click="$router.push('/basket')">Корзина</Navitem>
+      <Navitem @click="$router.push('/cart')">Корзина</Navitem>
     </nav>
     <nav class="nav-list">
       <Navitem @click="$router.push('/authorization')">Авторизация</Navitem>
       <Navitem @click="$router.push('/registration')">Регистариция</Navitem>
+      <Navitem @click="$router.push('/')">Выход</Navitem>
     </nav>
-  </div>
+  </section>
 </template>
 
 <style scoped>
@@ -24,6 +25,6 @@ import Navitem from "@/components/Navitem.vue";
 
 .nav-list{
   display: flex;
-  gap: 6px;
+  gap: 10px;
 }
 </style>

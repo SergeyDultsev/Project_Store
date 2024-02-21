@@ -11,5 +11,7 @@ import NavList from "@/components/NavList.vue";
 <style scoped>
 .header{
   width: 100%;
+  background: #f5f5f5;
+  padding: 20px 0;
 }
 </style>

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CatalogPage from "@/pages/CatalogPage.vue";
 import OrdersPage from "@/pages/OrdersPage.vue";
-import BasketPage from "@/pages/BasketPage.vue";
+import CartPage from "@/pages/CartPage.vue";
 import AuthorizationPage from "@/pages/AuthorizationPage.vue";
 import RegistrationPage from "@/pages/RegistrationPage.vue";
 
@@ -19,9 +19,9 @@ const router = createRouter({
       component: OrdersPage
     },
     {
-      path: '/basket',
-      name: 'basket',
-      component: BasketPage
+      path: '/cart',
+      name: 'cart',
+      component: CartPage
     },
     {
       path: '/authorization',

@@ -10,15 +10,12 @@
 
 <style scoped>
 .nav-item{
-  color: #FFFFFF;
-  background: var(--main-blue-color);
-  border-radius: 10px;
-  padding: 18px 30px;
+  color: var(--main-grey-color);
+  font-weight: bold;
 }
 
 .nav-item:hover{
   transition: all .3s;
   color: var(--main-blue-color);
-  background: rgba(255, 255, 255, 1);
 }
 </style>

@@ -1,5 +1,4 @@
 <script setup>
-
 import ButtonDefault from "@/components/ui/ButtonDefault.vue";
 </script>
 
@@ -9,7 +8,7 @@ import ButtonDefault from "@/components/ui/ButtonDefault.vue";
     <p class="product-info">10 руб</p>
     <p class="product-info">Описание</p>
     <div class="buttons">
-      <ButtonDefault>Добавить в корзину</ButtonDefault>
+      <ButtonDefault>Оформить товар</ButtonDefault>
     </div>
   </div>
 </template>

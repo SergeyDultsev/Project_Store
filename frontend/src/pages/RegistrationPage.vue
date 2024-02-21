@@ -23,6 +23,7 @@ import ButtonDefault from "@/components/ui/ButtonDefault.vue";
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  background: #FFFFFF;
   border-radius: 10px;
   max-width: 500px;
   width: 100%;
