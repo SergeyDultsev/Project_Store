@@ -9,7 +9,7 @@ const catalog = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`https://jurapro.bhuser.ru/api-shop/products`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
     catalog.value = response.data;
     console.log(catalog)
   } catch (error) {

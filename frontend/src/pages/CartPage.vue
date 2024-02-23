@@ -9,7 +9,7 @@ const cart = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`https://jurapro.bhuser.ru/api-shop/cart`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/cart`);
     cart.value = response.data;
     console.log(cart.value)
   } catch (error) {

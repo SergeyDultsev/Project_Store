@@ -12,7 +12,8 @@
 }
 
 .page{
-    margin-top: 20px;
+    margin: 0 auto;
+    padding: 20px 0;
 }
 
 .page__tilte{
@@ -25,4 +26,28 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.product-item{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 300px;
+    width:100%;
+}
+
+.product-name{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.product-info{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

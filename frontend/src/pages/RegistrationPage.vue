@@ -1,18 +1,36 @@
 <script setup>
-
 import ButtonDefault from "@/components/ui/ButtonDefault.vue";
+
+import {computed} from "vue";
+
+import {useStore} from "vuex";
+const store = useStore()
+
+const error = computed(() => store.getters.setError);
+
+const userRegister = {
+  fio: null,
+  email: null,
+  password: null,
+}
+
+async function register() {
+  console.log(1);
+  await store.dispatch("register", userRegister);
+}
 </script>
 
 <template>
   <section class="page">
     <div class="registartion">
       <h2 class="page__tilte">Регистраиция</h2>
-      <form class="form">
-        <input type="text" placeholder="Введите логин"/>
-        <input type="password" placeholder="Введите пароль"/>
+      <form class="form" @submit.prevent="register">
+        <input type="text" placeholder="Введите ФИО" v-model="userRegister.fio" required/>
+        <input type="text" placeholder="Введите логин" v-model="userRegister.email" required/>
+        <input type="password" placeholder="Введите пароль" v-model="userRegister.password" required/>
         <ButtonDefault type="submit">Зарегистрироваться</ButtonDefault>
       </form>
-      <a class="" href="#" @click="$router.push('/authorization')">У вас уже есть аккаунт?</a>
+      <a href="#" @click="$router.push('/authorization')">У вас уже есть аккаунт?</a>
     </div>
   </section>
 </template>

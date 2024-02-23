@@ -1,18 +1,32 @@
 <script setup>
-
 import ButtonDefault from "@/components/ui/ButtonDefault.vue";
+import { computed } from "vue";
+import { useStore } from 'vuex';
+const store = useStore();
+
+const error = computed(() => store.getters.setError);
+
+const userlogin = {
+  email: "",
+  password: ""
+}
+
+async function login() {
+  await store.dispatch('login', userlogin);
+}
 </script>
 
 <template>
   <section class="page">
     <div class="authorization">
       <h2 class="page__tilte">Авторизация</h2>
-      <form class="form">
-        <input type="text" placeholder="Введите логин"/>
-        <input type="password" placeholder="Введите пароль"/>
+      <form class="form" @submit.prevent="login">
+        <input type="text" placeholder="Введите логин" v-model="userlogin.email"/>
+        <input type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
+        <p v-if="error">{{ error }}</p>
         <ButtonDefault type="submit">Авторизироваться</ButtonDefault>
       </form>
-      <a class="" href="#" @click="$router.push('/registration')">Создать аккаунт?</a>
+      <a href="#" @click="$router.push('/registration')">Создать аккаунт?</a>
     </div>
   </section>
 </template>

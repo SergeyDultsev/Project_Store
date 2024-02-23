@@ -11,6 +11,7 @@
 <style scoped>
 .product-list{
   display: flex;
+  justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
 }

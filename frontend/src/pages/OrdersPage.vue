@@ -9,7 +9,7 @@ const orders = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`https://jurapro.bhuser.ru/api-shop/products`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/order`);
     orders.value = response.data;
     console.log(orders)
   } catch (error) {

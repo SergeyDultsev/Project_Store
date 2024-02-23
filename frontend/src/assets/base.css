@@ -29,6 +29,10 @@ a{
   text-decoration: none;
 }
 
+p{
+  color: var(--main-grey-color);
+}
+
 input, textarea{
   outline: none;
   border: none;
