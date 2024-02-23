@@ -15,7 +15,6 @@ const userRegister = {
 }
 
 async function register() {
-  console.log(1);
   await store.dispatch("register", userRegister);
 }
 </script>
@@ -28,6 +27,7 @@ async function register() {
         <input type="text" placeholder="Введите ФИО" v-model="userRegister.fio" required/>
         <input type="text" placeholder="Введите логин" v-model="userRegister.email" required/>
         <input type="password" placeholder="Введите пароль" v-model="userRegister.password" required/>
+        <p class="error" v-if="error">{{ error }}</p>
         <ButtonDefault type="submit">Зарегистрироваться</ButtonDefault>
       </form>
       <a href="#" @click="$router.push('/authorization')">У вас уже есть аккаунт?</a>

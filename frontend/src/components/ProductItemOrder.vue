@@ -1,11 +1,7 @@
 <script setup>
-import ButtonDefault from "@/components/ui/ButtonDefault.vue";
-
 const props = defineProps({
   product: Object
 })
-
-console.log(props.product)
 </script>
 
 <template>

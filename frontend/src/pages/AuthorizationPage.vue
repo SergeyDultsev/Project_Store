@@ -1,6 +1,7 @@
 <script setup>
 import ButtonDefault from "@/components/ui/ButtonDefault.vue";
 import { computed } from "vue";
+import axios from 'axios';
 import { useStore } from 'vuex';
 const store = useStore();
 
@@ -12,7 +13,11 @@ const userlogin = {
 }
 
 async function login() {
-  await store.dispatch('login', userlogin);
+  try {
+    await store.dispatch('login', userlogin);
+  } catch (error) {
+    console.error('Error during login:', error);
+  }
 }
 </script>
 
@@ -23,7 +28,7 @@ async function login() {
       <form class="form" @submit.prevent="login">
         <input type="text" placeholder="Введите логин" v-model="userlogin.email"/>
         <input type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
-        <p v-if="error">{{ error }}</p>
+        <p class="error" v-if="error">{{ error }}</p>
         <ButtonDefault type="submit">Авторизироваться</ButtonDefault>
       </form>
       <a href="#" @click="$router.push('/registration')">Создать аккаунт?</a>

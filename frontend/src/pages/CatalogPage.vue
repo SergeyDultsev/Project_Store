@@ -3,18 +3,15 @@ import ProductList from "@/components/ProductList.vue";
 import ProductItemCatalog from "@/components/ProductItemCatalog.vue";
 
 import {onMounted, ref} from "vue";
-import axios from "axios";
 
+import {useStore} from "vuex";
+const store = useStore();
 const catalog = ref([]);
 
 onMounted(async () => {
-  try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
-    catalog.value = response.data;
-    console.log(catalog)
-  } catch (error) {
-    console.error("Error fetching products:", error);
-  }
+  await store.dispatch('getProducts');
+  catalog.value = store.getters.getCatalog;
+  console.log(catalog);
 });
 </script>
 

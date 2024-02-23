@@ -3,25 +3,22 @@ import ProductList from "@/components/ProductList.vue";
 import ProductItemOrder from "@/components/ProductItemOrder.vue";
 
 import {onMounted, ref} from "vue";
-import axios from "axios";
+import {useStore} from "vuex";
+const store = useStore();
 
-const orders = ref([]);
+const order = ref([]);
 
 onMounted(async () => {
-  try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/order`);
-    orders.value = response.data;
-    console.log(orders)
-  } catch (error) {
-    console.error("Error fetching products:", error);
-  }
+  await store.dispatch('getProducts');
+  order.value = store.getters.getCatalog;
+  console.log(order);
 });
 </script>
 
 <template>
   <section class="page">
     <ProductList>
-      <ProductItemOrder v-for="product in orders.data" :key="product.id" :product="product"></ProductItemOrder>
+      <ProductItemOrder v-for="product in order.data" :key="product.id" :product="product"></ProductItemOrder>
     </ProductList>
   </section>
 </template>

@@ -51,3 +51,7 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+.error{
+    color: var(--main-red-color);
+}

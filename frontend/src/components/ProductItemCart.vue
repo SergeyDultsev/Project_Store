@@ -1,5 +1,6 @@
 <script setup>
 import ButtonDefault from "@/components/ui/ButtonDefault.vue";
+import ButtonRed from "@/components/ui/ButtonRed.vue";
 
 const props = defineProps({
   product: Object
@@ -15,6 +16,7 @@ console.log(props.product)
     <p class="product-info">{{ props.product.description }}</p>
     <div class="buttons">
       <ButtonDefault>Оформить товар</ButtonDefault>
+      <ButtonRed>Удалить с корзины</ButtonRed>
     </div>
   </div>
 </template>
