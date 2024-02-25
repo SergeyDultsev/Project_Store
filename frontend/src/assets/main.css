@@ -55,3 +55,11 @@
 .error{
     color: var(--main-red-color);
 }
+
+.banner-title__message {
+    font-size: 30px;
+}
+
+.banner-description__message{
+    font-size: 20px;
+}

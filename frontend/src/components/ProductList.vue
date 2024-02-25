@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <section class="product-list">
+  <div class="product-list">
     <slot></slot>
-  </section>
+  </div>
 </template>
 
 <style scoped>

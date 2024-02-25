@@ -1,9 +1,18 @@
 <script setup>
 import ButtonDefault from "@/components/ui/ButtonDefault.vue";
 
+import {useStore} from "vuex";
+const store = useStore();
+
 const props = defineProps({
   product: Object
 })
+
+const error = store.getters.setErrorCart;
+
+const addToCart = () => {
+  store.dispatch('addToCart', props.product.id);
+};
 </script>
 
 <template>
@@ -11,8 +20,10 @@ const props = defineProps({
     <h2 class="product-name">{{ props.product.name }}</h2>
     <p class="product-info">{{ props.product.price }} руб</p>
     <p class="product-info">{{ props.product.description }}</p>
+    <p class="product-info">Код товара: {{ props.product.id }}</p>
+    <p class="error">{{ error }}</p>
     <div class="buttons">
-      <ButtonDefault>Добавить в корзину</ButtonDefault>
+      <ButtonDefault @click="addToCart">Добавить в корзину</ButtonDefault>
     </div>
   </div>
 </template>

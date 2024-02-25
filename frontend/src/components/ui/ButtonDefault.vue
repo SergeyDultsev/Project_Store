@@ -10,12 +10,11 @@
 
 <style scoped>
 .btn-default{
-  padding: 8px 6px;
+  padding: 8px 10px;
   border: 2px solid var(--main-blue-color);
   color: #FFFFFF;
   background: var(--main-blue-color);
   border-radius: 10px;
-  width: 100%;
 }
 .btn-default:hover{
   transition: all .3s;

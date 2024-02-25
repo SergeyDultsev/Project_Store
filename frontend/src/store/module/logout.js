@@ -1,18 +1,25 @@
 import axios from 'axios';
+import router from '@/router/index.js';
 
 const actions = {
     async logout({ commit }) {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/logout`);
+            const token = localStorage.getItem('token');
 
-            if (response.status === 200) {
-                commit('clearToken');
-                return response.data.data.message;
-            } else {
-                return Promise.reject('Ошибка при выходе из учетной записи');
-            }
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            };
+
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/logout`, config);
+            commit('clearToken');
+            localStorage.removeItem('token');
+            router.push('/authorization');
+            return response.data.data.message;
         } catch (error) {
-            return Promise.reject('Произошла ошибка при выходе из учетной записи');
+            console.error('Ошибка при выходе из учетной записи:', error);
+            commit('clearToken');
         }
     }
 };
@@ -20,6 +27,7 @@ const actions = {
 const mutations = {
     clearToken(state) {
         state.token = null;
+        localStorage.removeItem("token");
     }
 };
 

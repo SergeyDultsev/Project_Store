@@ -22,7 +22,8 @@ const mutations = {
 };
 
 const getters = {
-    getOrder: state => state. order
+    getOrder: state => state. order,
+    setErrorOrder: state => state.error,
 };
 
 export default {

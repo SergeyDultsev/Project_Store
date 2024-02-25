@@ -22,7 +22,7 @@ const actions = {
                 localStorage.setItem('token', token);
             } else {
                 commit("setToken", null);
-                const errorMessage = response.data && response.data.message ? response.data.message : 'Произошла ошибка при входе';
+                const errorMessage = response.data && response.data.message ? response.data.message : 'Authentication failed';
                 commit("setError", errorMessage);
                 localStorage.removeItem('token');
             }
