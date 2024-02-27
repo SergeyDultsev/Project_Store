@@ -1,6 +1,6 @@
 <script setup>
-import ButtonDefault from "@/components/ui/ButtonDefault.vue";
-import ButtonRed from "@/components/ui/ButtonRed.vue";
+import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
+import ButtonRed from "@/components/ui/buttons/ButtonRed.vue";
 
 import {useStore} from "vuex";
 import { computed } from "vue";

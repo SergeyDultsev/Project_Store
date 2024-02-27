@@ -5,20 +5,16 @@ const actions = {
     async logout({ commit }) {
         try {
             const token = localStorage.getItem('token');
-
-            const config = {
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            };
-
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/logout`, config);
+            });
             commit('clearToken');
             localStorage.removeItem('token');
             router.push('/authorization');
             return response.data.data.message;
         } catch (error) {
-            console.error('Ошибка при выходе из учетной записи:', error);
             commit('clearToken');
         }
     }

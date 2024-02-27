@@ -10,7 +10,7 @@ async function logout() {
   try {
     await store.dispatch('logout');
   } catch (error) {
-    console.error('Ошибка при выходе из учетной записи:', error);
+    console.error(error);
   }
 };
 </script>
@@ -41,5 +41,14 @@ async function logout() {
 .nav-list{
   display: flex;
   gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-block {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 </style>

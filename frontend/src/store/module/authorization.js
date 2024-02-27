@@ -18,7 +18,6 @@ const actions = {
                 const token = response.data.data.user_token;
                 commit("setToken", token);
                 commit("setError", null);
-                console.log('Token:', token);
                 localStorage.setItem('token', token);
             } else {
                 commit("setToken", null);
@@ -27,9 +26,8 @@ const actions = {
                 localStorage.removeItem('token');
             }
         } catch (error) {
-            console.error('Error during login:', error);
             commit("setToken", null);
-            commit("setError", "Произошла ошибка при входе");
+            commit("setError", "Authentication failed");
             localStorage.removeItem('token');
         }
     }

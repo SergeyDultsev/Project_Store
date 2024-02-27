@@ -17,4 +17,10 @@ import NavList from "@/components/NavList.vue";
   background: rgba(245, 245, 245, 0.80);
   padding: 20px 0;
 }
+
+@media screen and (max-width: 1230px) {
+  .header{
+    padding: 20px 20px;
+  }
+}
 </style>

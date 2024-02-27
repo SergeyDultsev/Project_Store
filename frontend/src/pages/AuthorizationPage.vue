@@ -1,8 +1,12 @@
 <script setup>
-import ButtonDefault from "@/components/ui/ButtonDefault.vue";
+import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
 import { computed } from "vue";
-import axios from 'axios';
+
+import {useRouter} from "vue-router";
+const router = useRouter();
 import { useStore } from 'vuex';
+import InputDefault from "@/components/ui/inputs/InputDefault.vue";
+import InputError from "@/components/ui/inputs/InputError.vue";
 const store = useStore();
 
 const error = computed(() => store.getters.setError);
@@ -15,6 +19,7 @@ const userlogin = {
 async function login() {
   try {
     await store.dispatch('login', userlogin);
+    router.push('/');
   } catch (error) {
     console.error('Error during login:', error);
   }
@@ -25,9 +30,14 @@ async function login() {
   <section class="page">
     <div class="authorization">
       <h2 class="page__tilte">Авторизация</h2>
-      <form class="form" @submit.prevent="login">
-        <input type="text" placeholder="Введите логин" v-model="userlogin.email"/>
-        <input type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
+      <form class="form" @submit.prevent="login" v-if="!error">
+        <InputDefault type="text" placeholder="Введите логин" v-model="userlogin.email"/>
+        <InputDefault type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
+        <ButtonDefault type="submit">Авторизироваться</ButtonDefault>
+      </form>
+      <form class="form" @submit.prevent="login" v-else>
+        <InputError type="text" placeholder="Введите логин" v-model="userlogin.email"/>
+        <InputError type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
         <p class="error" v-if="error">{{ error }}</p>
         <ButtonDefault type="submit">Авторизироваться</ButtonDefault>
       </form>

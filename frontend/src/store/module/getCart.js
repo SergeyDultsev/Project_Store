@@ -2,7 +2,8 @@ import axios from "axios";
 
 const state = {
     cart: [],
-    error: null
+    error: null,
+    successMessage : null,
 };
 
 const actions = {
@@ -14,17 +15,27 @@ const actions = {
             console.error("Error fetching cart:", error);
         }
     },
-    async addToCart({ commit }, productId) {
+    async addToCart({ commit, state }, productId) {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/cart/`, { productId });
-            commit('addToCart', response.data.product);
+            const token = localStorage.getItem('token');
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/cart/`, { productId }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if(response.status === 201){
+                commit('addToCart', response.data.product);
+                commit('setSuccessMessage', response.data.message);
+            }
         } catch (error) {
             if (error.response) {
                 console.error('Response status:', error.response.status);
                 if (error.response.status === 403) {
-                    commit('setError', 'Forbidden for you');
+                    commit('setErrorCart', 'Forbidden for you');
                 }
             }
+            throw error;
         }
     },
 };
@@ -41,6 +52,9 @@ const mutations = {
     },
     setErrorCart(state, error) {
         state.error = error;
+    },
+    setSuccessMessage(state, message) {
+        state.successMessage = message;
     }
 };
 
