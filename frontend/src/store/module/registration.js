@@ -23,7 +23,6 @@ const actions = {
                 commit('setRegistrationError', 'Ошибка регистрации');
             }
         } catch (error) {
-            console.error('Error during registration:', error);
             if (error.response) {
                 if (error.response.status === 422) {
                     commit('setRegistrationError', 'Ошибка валидации полей');

@@ -3,6 +3,7 @@ import ProductList from "@/components/ProductList.vue";
 import ProductItemOrder from "@/components/ProductItemOrder.vue";
 import ModalDefault from "@/components/ui/modals/ModalDefault.vue";
 import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
+import SitebarApp from "@/components/SitebarApp.vue";
 
 import {onMounted, ref} from "vue";
 import {useStore} from "vuex";
@@ -17,6 +18,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <SitebarApp></SitebarApp>
   <section class="page">
     <ProductList v-if="order < 0">
       <ProductItemOrder v-for="product in order.data" :key="product.id" :product="product"></ProductItemOrder>

@@ -3,6 +3,7 @@ import ProductList from "@/components/ProductList.vue";
 import ProductItemCart from "@/components/ProductItemCart.vue";
 import ModalDefault from "@/components/ui/modals/ModalDefault.vue";
 import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
+import SitebarApp from "@/components/SitebarApp.vue";
 
 import {onMounted, ref} from "vue";
 import {useStore} from "vuex";
@@ -17,15 +18,16 @@ onMounted(async () => {
 </script>
 
 <template>
+  <SitebarApp></SitebarApp>
   <section class="page">
-    <ProductList v-if="cart < 0">
-      <ProductItemCart v-for="product in cart.data" :key="product.id" :product="product"></ProductItemCart>
-    </ProductList>
-    <ModalDefault v-else>
+    <ModalDefault v-if="cart === []">
       <h2 class="banner-title__message">Нету товаров в корзине</h2>
       <p class="banner-description__message">Вы ещё не добавляли товары в корзину</p>
       <ButtonDefault @click="$router.push('/')">Посмотреть каталог</ButtonDefault>
     </ModalDefault>
+    <ProductList v-else>
+      <ProductItemCart v-for="product in cart.data" :key="product.id" :product="product"></ProductItemCart>
+    </ProductList>
   </section>
 </template>
 

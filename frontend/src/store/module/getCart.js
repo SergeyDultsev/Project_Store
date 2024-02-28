@@ -9,19 +9,25 @@ const state = {
 const actions = {
     async getProductsCart({ commit }) {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/cart`);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/cart`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             commit("setCart", response.data);
         } catch (error) {
-            console.error("Error fetching cart:", error);
+            if (error.response) {
+                commit('setErrorCart', 'Error fetching cart');
+            }
         }
     },
-    async addToCart({ commit, state }, productId) {
+    async addToCart({ commit }, productId) {
         try {
-            const token = localStorage.getItem('token');
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/cart/`, { productId }, {
+            const token =  localStorage.getItem('token');
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/cart/${productId}`, null, {
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             });
             if(response.status === 201){
@@ -30,7 +36,6 @@ const actions = {
             }
         } catch (error) {
             if (error.response) {
-                console.error('Response status:', error.response.status);
                 if (error.response.status === 403) {
                     commit('setErrorCart', 'Forbidden for you');
                 }
@@ -47,8 +52,8 @@ const mutations = {
     setCart(state, cart) {
         state.cart = cart;
     },
-    clearCart(state) {
-        state.cart = [];
+    deleteCart(state, product) {
+        state.cart.splice(product, 1);
     },
     setErrorCart(state, error) {
         state.error = error;

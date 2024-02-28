@@ -10,14 +10,18 @@
 
 <style scoped>
 .nav-item{
-  text-align: center;
-  color: var(--main-grey-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
   font-weight: bold;
+  padding: 20px 0 20px 30px;
+  color: var(--main-blue-color);
 }
 
 .nav-item:hover{
   transition: all .3s;
-  color: var(--main-blue-color);
+  background: var(--main-blue-10-transparency-color);
 }
 
 @media screen and (max-width: 768px) {
@@ -26,9 +30,16 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 768px) {
   .nav-item{
+    flex-direction: column;
+    text-align: center;
     font-size: 14px;
+    padding: 0;
+  }
+
+  .nav-item:hover{
+    background: none;
   }
 }
 </style>

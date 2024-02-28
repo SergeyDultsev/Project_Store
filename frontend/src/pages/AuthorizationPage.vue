@@ -2,11 +2,10 @@
 import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
 import { computed } from "vue";
 
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 const router = useRouter();
+
 import { useStore } from 'vuex';
-import InputDefault from "@/components/ui/inputs/InputDefault.vue";
-import InputError from "@/components/ui/inputs/InputError.vue";
 const store = useStore();
 
 const error = computed(() => store.getters.setError);
@@ -31,17 +30,18 @@ async function login() {
     <div class="authorization">
       <h2 class="page__tilte">Авторизация</h2>
       <form class="form" @submit.prevent="login" v-if="!error">
-        <InputDefault type="text" placeholder="Введите логин" v-model="userlogin.email"/>
-        <InputDefault type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
+        <input class="input-default" type="text" placeholder="Введите логин" v-model="userlogin.email"/>
+        <input class="input-default" type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
         <ButtonDefault type="submit">Авторизироваться</ButtonDefault>
       </form>
       <form class="form" @submit.prevent="login" v-else>
-        <InputError type="text" placeholder="Введите логин" v-model="userlogin.email"/>
-        <InputError type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
+        <input class="input-error" type="text" placeholder="Введите логин" v-model="userlogin.email"/>
+        <input class="input-error" type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
         <p class="error" v-if="error">{{ error }}</p>
         <ButtonDefault type="submit">Авторизироваться</ButtonDefault>
       </form>
-      <a href="#" @click="$router.push('/registration')">Создать аккаунт?</a>
+      <a href="#" @click="$router.push('/registration')">Создать аккаунт</a>
+      <a href="#" @click="$router.push('/')">На главную страницу</a>
     </div>
   </section>
 </template>

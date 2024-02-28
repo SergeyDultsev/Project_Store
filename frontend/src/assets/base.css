@@ -1,5 +1,6 @@
 :root {
   --main-blue-color: #3E2EF9;
+  --main-blue-10-transparency-color: rgba(62, 46, 249, 0.1);
   --main-grey-color: #505050;
   --main-red-color: #f30303;
   --main-green-color: #1be30a;
@@ -33,6 +34,11 @@ a{
 
 p{
   color: var(--main-grey-color);
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
 }
 
 input, textarea{

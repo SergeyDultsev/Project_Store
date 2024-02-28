@@ -1,11 +1,13 @@
 <script setup>
 import ProductList from "@/components/ProductList.vue";
 import ProductItemCatalog from "@/components/ProductItemCatalog.vue";
+import SitebarApp from "@/components/SitebarApp.vue";
 
 import {onMounted, ref} from "vue";
 
 import {useStore} from "vuex";
 const store = useStore();
+
 const catalog = ref([]);
 
 onMounted(async () => {
@@ -15,6 +17,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <SitebarApp></SitebarApp>
   <section class="page">
     <div class="catalog">
       <ProductList>

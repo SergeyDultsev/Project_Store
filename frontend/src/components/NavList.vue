@@ -18,16 +18,30 @@ async function logout() {
 <template>
   <section class="nav-block">
     <nav class="nav-list">
-      <Navitem @click="$router.push('/')">Каталог</Navitem>
-      <Navitem @click="$router.push('/order')">Оформленные товары</Navitem>
-      <Navitem @click="$router.push('/cart')">Корзина</Navitem>
+      <Navitem @click="$router.push('/')">
+        <img class="icon" src="../assets/img/shop.png" alt="catalog">
+        Каталог
+      </Navitem>
+      <Navitem @click="$router.push('/order')">
+        <img class="icon" src="../assets/img/shopping.png" alt="shopping">
+        Оформленные товары
+      </Navitem>
+      <Navitem @click="$router.push('/cart')">
+        <img class="icon" src="../assets/img/cart.png" alt="cart">
+        Корзина
+      </Navitem>
     </nav>
     <nav class="nav-list" v-if="setToken">
-      <Navitem @click="logout">Выйти</Navitem>
+      <Navitem @click="logout">
+        <img class="icon" src="../assets/img/exit.png" alt="exit">
+        Выйти
+      </Navitem>
     </nav>
     <nav class="nav-list" v-else>
-      <Navitem @click="$router.push('/authorization')">Авторизация</Navitem>
-      <Navitem @click="$router.push('/registration')">Регистрация</Navitem>
+      <Navitem @click="$router.push('/authorization')">
+        <img class="icon" src="../assets/img/exit.png" alt="exit">
+        Авторизация
+      </Navitem>
     </nav>
   </section>
 </template>
@@ -35,20 +49,28 @@ async function logout() {
 <style scoped>
 .nav-block{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 .nav-list{
   display: flex;
-  gap: 10px;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 768px) {
-  .nav-block {
-    align-items: center;
+  .nav-block{
+    display: flex;
     justify-content: center;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .nav-list{
+    flex-direction: row;
+    gap: 20px;
   }
 }
 </style>

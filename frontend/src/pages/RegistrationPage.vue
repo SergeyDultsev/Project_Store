@@ -4,8 +4,6 @@ import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
 import {computed} from "vue";
 
 import {useStore} from "vuex";
-import InputDefault from "@/components/ui/inputs/InputDefault.vue";
-import InputError from "@/components/ui/inputs/InputError.vue";
 const store = useStore()
 
 const error = computed(() => store.getters.setError);
@@ -26,19 +24,20 @@ async function register() {
     <div class="registartion">
       <h2 class="page__tilte">Регистраиция</h2>
       <form class="form" @submit.prevent="register" v-if="!error">
-        <InputDefault type="text" placeholder="Введите ФИО" v-model="userRegister.fio" required/>
-        <InputDefault type="text" placeholder="Введите логин" v-model="userRegister.email" required/>
-        <InputDefault type="password" placeholder="Введите пароль" v-model="userRegister.password" required/>
+        <input class="input-default" type="text" placeholder="Введите ФИО" v-model="userRegister.fio" required/>
+        <input class="input-default" type="text" placeholder="Введите логин" v-model="userRegister.email" required/>
+        <input class="input-default" type="password" placeholder="Введите пароль" v-model="userRegister.password" required/>
         <ButtonDefault type="submit">Зарегистрироваться</ButtonDefault>
       </form>
       <form class="form" @submit.prevent="register" v-else>
-        <InputError type="text" placeholder="Введите ФИО" v-model="userRegister.fio" required/>
-        <InputError type="text" placeholder="Введите логин" v-model="userRegister.email" required/>
-        <InputError type="password" placeholder="Введите пароль" v-model="userRegister.password" required/>
+        <input class="input-error" type="text" placeholder="Введите ФИО" v-model="userRegister.fio" required/>
+        <input class="input-error" type="text" placeholder="Введите логин" v-model="userRegister.email" required/>
+        <input class="input-error" type="password" placeholder="Введите пароль" v-model="userRegister.password" required/>
         <p class="error">{{ error }}</p>
         <ButtonDefault type="submit">Зарегистрироваться</ButtonDefault>
       </form>
       <a href="#" @click="$router.push('/authorization')">У вас уже есть аккаунт?</a>
+      <a href="#" @click="$router.push('/')">На главную страницу</a>
     </div>
   </section>
 </template>
