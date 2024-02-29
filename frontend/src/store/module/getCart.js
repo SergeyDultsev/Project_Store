@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const state = {
-    cart: [],
     error: null,
     successMessage : null,
 };

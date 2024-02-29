@@ -5,6 +5,9 @@ import {useStore} from "vuex";
 import {computed, ref} from "vue";
 const store = useStore();
 
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 
 const props = defineProps({
   product: Object
@@ -13,11 +16,15 @@ const props = defineProps({
 const isLoading = ref(false);
 
 const error = computed(() => store.getters.setErrorCart);
-const deleteToCart = async () => {
+
+const emit = defineEmits(["delete"]);
+
+const deleteToCart = () => {
   try {
     isLoading.value = true;
-    await store.dispatch("deleteToCart", props.product.id);
+    emit('delete', props.product.id);
     isLoading.value = false;
+    router.push('/');
   } catch (error) {
     isLoading.value = false;
   }
@@ -30,7 +37,7 @@ const deleteToCart = async () => {
     <p class="product-info">{{ props.product.price }} руб</p>
     <p class="product-info">{{ props.product.description }}</p>
     <p class="product-info">Код товара: {{ props.product.id }}</p>
-    <ButtonRed v-if="isLoading">Удалить с корзины</ButtonRed>
+    <ButtonRed v-if="isLoading">Удаление...</ButtonRed>
     <ButtonRed v-else @click="deleteToCart">Удалить с корзины</ButtonRed>
   </div>
 </template>

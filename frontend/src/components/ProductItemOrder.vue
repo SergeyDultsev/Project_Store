@@ -6,10 +6,9 @@ const props = defineProps({
 
 <template>
   <div class="product-item">
+    <h2>Заказ №{{ props.product.id }}</h2>
     <h2 class="product-name">{{ props.product.name }}</h2>
-    <p class="product-info">{{ props.product.price }} руб</p>
-    <p class="product-info">{{ props.product.description }}</p>
-    <p class="product-info">Код товара: {{ props.product.id }}</p>
+    <p class="product-info">Общая цена заказа: {{ props.product.order_price }} руб</p>
   </div>
 </template>
 
