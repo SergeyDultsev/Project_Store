@@ -25,12 +25,33 @@ onMounted(async () => {
       <p class="banner-description__message">Вы ещё не добавляли товары в корзину</p>
       <ButtonDefault @click="$router.push('/')">Посмотреть каталог</ButtonDefault>
     </ModalDefault>
-    <ProductList v-else>
-      <ProductItemCart v-for="product in cart.data" :key="product.id" :product="product"></ProductItemCart>
-    </ProductList>
+    <div class="card-content" v-else>
+      <section class="cart-info">
+        <ButtonDefault>Оформить товары</ButtonDefault>
+      </section>
+      <ProductList>
+        <ProductItemCart v-for="product in cart.data" :key="product.id" :product="product"></ProductItemCart>
+      </ProductList>
+    </div>
   </section>
 </template>
 
 <style scoped>
+.card-content{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: column;
+}
 
+.cart-info{
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding: 20px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 920px;
+}
 </style>

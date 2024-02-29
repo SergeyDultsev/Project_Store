@@ -9,13 +9,7 @@ const props = defineProps({
 })
 
 const addToCart = async () => {
-  try {
-    await store.dispatch('addToCart', props.product.id);
-  } catch (error) {
-    if (error.response) {
-      console.error('Response status:', error.response.status);
-    }
-  }
+  await store.dispatch('addToCart', props.product.id);
 };
 </script>
 

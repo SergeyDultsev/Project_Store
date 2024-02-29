@@ -71,7 +71,6 @@
 .input-default{
     padding: 10px 8px;
     border-radius: 10px;
-    width: 100%;
     border: 1px solid var(--main-blue-color);
 }
 
@@ -82,7 +81,6 @@
 .input-error{
     padding: 10px 8px;
     border-radius: 10px;
-    width: 100%;
     border: 1px solid var(--main-red-color);
 }
 

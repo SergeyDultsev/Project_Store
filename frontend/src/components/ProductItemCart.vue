@@ -1,9 +1,8 @@
 <script setup>
-import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
 import ButtonRed from "@/components/ui/buttons/ButtonRed.vue";
 
 import {useStore} from "vuex";
-import { computed } from "vue";
+import {computed, ref} from "vue";
 const store = useStore();
 
 
@@ -11,7 +10,18 @@ const props = defineProps({
   product: Object
 })
 
+const isLoading = ref(false);
+
 const error = computed(() => store.getters.setErrorCart);
+const deleteToCart = async () => {
+  try {
+    isLoading.value = true;
+    await store.dispatch("deleteToCart", props.product.id);
+    isLoading.value = false;
+  } catch (error) {
+    isLoading.value = false;
+  }
+};
 </script>
 
 <template>
@@ -20,10 +30,8 @@ const error = computed(() => store.getters.setErrorCart);
     <p class="product-info">{{ props.product.price }} руб</p>
     <p class="product-info">{{ props.product.description }}</p>
     <p class="product-info">Код товара: {{ props.product.id }}</p>
-    <div class="buttons">
-      <ButtonDefault>Оформить товар</ButtonDefault>
-      <ButtonRed>Удалить с корзины</ButtonRed>
-    </div>
+    <ButtonRed v-if="isLoading">Удалить с корзины</ButtonRed>
+    <ButtonRed v-else @click="deleteToCart">Удалить с корзины</ButtonRed>
   </div>
 </template>
 

@@ -15,7 +15,6 @@
   color: #FFFFFF;
   background: var(--main-red-color);
   border-radius: 10px;
-  width: 100%;
 }
 .btn-default:hover{
   transition: all .3s;

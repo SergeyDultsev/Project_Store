@@ -43,6 +43,27 @@ const actions = {
             throw error;
         }
     },
+    async deleteToCart({ commit }, productId) {
+        try {
+            const token =  localStorage.getItem('token');
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/cart/${productId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            if(response.status === 200){
+                commit('deleteToCart', response.data.product);
+                commit('setSuccessMessage', response.data.message);
+            }
+        } catch (error) {
+            if (error.response) {
+                if (error.response.status === 403) {
+                    commit('setErrorCart', 'Forbidden for you');
+                }
+            }
+            throw error;
+        }
+    },
 };
 
 const mutations = {
@@ -52,7 +73,7 @@ const mutations = {
     setCart(state, cart) {
         state.cart = cart;
     },
-    deleteCart(state, product) {
+    deleteToCart(state, product) {
         state.cart.splice(product, 1);
     },
     setErrorCart(state, error) {
