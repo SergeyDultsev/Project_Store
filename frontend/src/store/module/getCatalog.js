@@ -13,7 +13,7 @@ const actions = {
 
 const mutations = {
     setCatalog(state, catalog) {
-        state.catalog = catalog;
+        state.catalog = catalog.data;
     }
 };
 

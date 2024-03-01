@@ -5,6 +5,7 @@ import SitebarApp from "@/components/SitebarApp.vue";
 
 import {onMounted, ref} from "vue";
 import {useStore} from "vuex";
+import MessageApp from "@/components/MessageApp.vue";
 const store = useStore();
 
 const order = ref([]);
@@ -18,7 +19,13 @@ onMounted(async () => {
 <template>
   <SitebarApp></SitebarApp>
   <section class="page">
-    <ProductList>
+    <MessageApp v-if="order.length === 0">
+      <h2 class="message-title">Вы ещё ничего не покупали у нас</h2>
+      <a class="message-link" @click="$router.push('/')">
+        Посмотреть каталог
+      </a>
+    </MessageApp>
+    <ProductList v-else>
       <ProductItemOrder v-for="product in order" :key="product.id" :product="product"></ProductItemOrder>
     </ProductList>
   </section>

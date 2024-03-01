@@ -14,7 +14,7 @@ async function getOrderProduct() {
   await store.dispatch('getProductsCatalog');
   const orders = store.getters.getCatalog;
 
-  for (const productCatalog of orders.data) {
+  for (const productCatalog of orders) {
     for (const productOrder of props.product.products) {
       if (productOrder === productCatalog.id) {
         orderProducts.value.push(productCatalog);

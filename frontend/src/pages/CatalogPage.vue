@@ -21,7 +21,7 @@ onMounted(async () => {
   <section class="page">
     <div class="catalog">
       <ProductList>
-        <ProductItemCatalog v-for="product in catalog.data" :key="product.id" :product="product"></ProductItemCatalog>
+        <ProductItemCatalog v-for="product in catalog" :key="product.id" :product="product"></ProductItemCatalog>
       </ProductList>
     </div>
   </section>

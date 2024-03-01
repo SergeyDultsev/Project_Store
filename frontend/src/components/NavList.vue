@@ -1,18 +1,15 @@
 <script setup>
 import Navitem from "@/components/Navitem.vue";
 
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import { useStore } from 'vuex';
 const store = useStore();
 const setToken = computed(() => store.getters.setToken);
 
+const cart = ref([]);
 async function logout() {
-  try {
-    await store.dispatch('logout');
-  } catch (error) {
-    console.error(error);
-  }
-};
+  await store.dispatch('logout');
+}
 </script>
 
 <template>

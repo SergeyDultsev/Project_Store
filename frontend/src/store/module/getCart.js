@@ -3,7 +3,7 @@ import axios from "axios";
 const state = {
     cart: [],
     error: null,
-    successMessage : null,
+    successMessage: null,
 };
 
 const actions = {
@@ -64,17 +64,16 @@ const mutations = {
     deleteToCart(state, product) {
         state.cart.splice(product, 1);
     },
+    setSuccessMessage(state, message) {
+        state.successMessage = message;
+    },
     setErrorCart(state, error) {
         state.error = error;
     },
-    setSuccessMessage(state, message) {
-        state.successMessage = message;
-    }
 };
 
 const getters = {
     getCart: state => state.cart,
-    setErrorCart: state => state.error,
 };
 
 export default {

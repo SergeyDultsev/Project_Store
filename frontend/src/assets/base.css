@@ -24,12 +24,12 @@ body {
 section{
   max-width: 1230px;
   width: 100%;
-  margin: 0 auto;
 }
 
 a{
   color:var(--main-blue-color);
   text-decoration: none;
+  cursor: pointer;
 }
 
 p{
@@ -48,4 +48,5 @@ input, textarea{
 
 button{
   outline: none;
+  cursor: pointer;
 }
