@@ -14,6 +14,6 @@
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 0 20px;
+  align-self: flex-start;
 }
 </style>

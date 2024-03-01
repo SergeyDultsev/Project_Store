@@ -12,10 +12,12 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const cart = ref([]);
+const quantityProduct = ref(null);
 
 onMounted(async () => {
   await store.dispatch('getProductsCart');
   cart.value = store.getters.getCart;
+  quantityProduct.value = cart.value.length;
 });
 
 const deleteFromCart = async (productId) => {
@@ -32,6 +34,7 @@ const addToOrder = async () => {
     console.error("Error adding order:", error);
   }
 };
+
 </script>
 
 <template>
@@ -39,10 +42,11 @@ const addToOrder = async () => {
   <section class="page">
     <div class="card-content">
       <section class="cart-info">
+        <p class="product-info">Количество товаров:{{ quantityProduct }} </p>
         <ButtonDefault @click="addToOrder">Оформить товары</ButtonDefault>
       </section>
       <ProductList>
-        <ProductItemCart v-for="product in cart.data" :key="product.id" :product="product" @delete="deleteFromCart"></ProductItemCart>
+        <ProductItemCart v-for="product in cart" :key="product.id" :product="product" @delete="deleteFromCart"></ProductItemCart>
       </ProductList>
     </div>
   </section>
@@ -52,8 +56,7 @@ const addToOrder = async () => {
 .card-content{
   display: flex;
   justify-content: center;
-  gap: 20px;
-  flex-direction: column;
+  gap: 10px;
 }
 
 .cart-info{
@@ -63,8 +66,8 @@ const addToOrder = async () => {
   padding: 20px;
   background: #FFFFFF;
   border-radius: 10px;
-  margin: 0 auto;
   width: 100%;
-  max-width: 200px;
+  max-width: 300px;
+  align-self: flex-start;
 }
 </style>

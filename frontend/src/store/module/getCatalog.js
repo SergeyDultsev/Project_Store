@@ -5,13 +5,9 @@ const state = {
 };
 
 const actions = {
-    async getProducts({ commit }) {
-        try {
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
-            commit("setCatalog", response.data);
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        }
+    async getProductsCatalog({ commit }) {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
+        commit("setCatalog", response.data);
     }
 };
 

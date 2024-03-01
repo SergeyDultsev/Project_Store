@@ -11,7 +11,7 @@ const store = useStore();
 const catalog = ref([]);
 
 onMounted(async () => {
-  await store.dispatch('getProducts');
+  await store.dispatch('getProductsCatalog');
   catalog.value = store.getters.getCatalog;
 });
 </script>

@@ -24,7 +24,6 @@ const deleteToCart = () => {
     isLoading.value = true;
     emit('delete', props.product.id);
     isLoading.value = false;
-    router.push('/');
   } catch (error) {
     isLoading.value = false;
   }

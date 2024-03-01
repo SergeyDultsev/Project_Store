@@ -6,32 +6,22 @@ const state = {
 
 const actions = {
     async getOrder({ commit }) {
-        try {
-            const token = localStorage.getItem("token");
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/order`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            commit("setOrder", response.data);
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        }
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/order`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        commit("setOrder", response.data);
     },
     async addToOrder({ commit, rootState }) {
-        try {
-            const token = localStorage.getItem("token");
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/order`, {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            commit("addToOrder", response.data);
-            commit("cart/setCart", [], { root: true });
-        } catch (error) {
-            console.error("Error adding order:", error);
-            throw error;
-        }
+        const token = localStorage.getItem("token");
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/order`, {}, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        commit("addToOrder", response.data);
     }
 };
 
@@ -40,13 +30,12 @@ const mutations = {
         state.order.push(product);
     },
     setOrder(state, catalog) {
-        state.order = catalog;
+        state.order = catalog.data;
     },
 };
 
 const getters = {
-    getOrder: state => state. order,
-    setErrorOrder: state => state.error,
+    getOrder: state => state.order,
 };
 
 export default {

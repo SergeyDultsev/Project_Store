@@ -30,18 +30,18 @@ async function logout() {
         <img class="icon" src="../assets/img/cart.png" alt="cart">
         Корзина
       </Navitem>
-    </nav>
-    <nav class="nav-list" v-if="setToken">
-      <Navitem @click="logout">
-        <img class="icon" src="../assets/img/exit.png" alt="exit">
-        Выйти
-      </Navitem>
-    </nav>
-    <nav class="nav-list" v-else>
-      <Navitem @click="$router.push('/authorization')">
-        <img class="icon" src="../assets/img/exit.png" alt="exit">
-        Авторизация
-      </Navitem>
+      <nav class="nav-list" v-if="setToken">
+        <Navitem @click="logout">
+          <img class="icon" src="../assets/img/exit.png" alt="exit">
+          Выйти
+        </Navitem>
+      </nav>
+      <nav class="nav-list" v-else>
+        <Navitem @click="$router.push('/authorization')">
+          <img class="icon" src="../assets/img/exit.png" alt="exit">
+          Авторизация
+        </Navitem>
+      </nav>
     </nav>
   </section>
 </template>

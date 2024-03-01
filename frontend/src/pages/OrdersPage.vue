@@ -19,7 +19,7 @@ onMounted(async () => {
   <SitebarApp></SitebarApp>
   <section class="page">
     <ProductList>
-      <ProductItemOrder v-for="product in order.data" :key="product.id" :product="product"></ProductItemOrder>
+      <ProductItemOrder v-for="product in order" :key="product.id" :product="product"></ProductItemOrder>
     </ProductList>
   </section>
 </template>
