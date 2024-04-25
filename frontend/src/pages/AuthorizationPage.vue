@@ -1,26 +1,20 @@
 <script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { login } from '@/api/authorization.js';
 import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
-import { computed } from "vue";
 
-import { useRouter } from "vue-router";
+const email = ref('');
+const password = ref('');
+const error = ref(null);
 const router = useRouter();
 
-import { useStore } from 'vuex';
-const store = useStore();
-
-const error = computed(() => store.getters.setError);
-
-const userlogin = {
-  email: "",
-  password: ""
-}
-
-async function login() {
-  try {
-    await store.dispatch('login', userlogin);
+async function submitForm() {
+  const { token, error: authError } = await login(email.value, password.value);
+  if (token) {
     router.push('/');
-  } catch (error) {
-    console.error('Error during login:', error);
+  } else {
+    error.value = authError;
   }
 }
 </script>
@@ -29,14 +23,14 @@ async function login() {
   <section class="page">
     <div class="authorization">
       <h2 class="page__tilte">Авторизация</h2>
-      <form class="form" @submit.prevent="login" v-if="!error">
-        <input class="input-default" type="text" placeholder="Введите логин" v-model="userlogin.email"/>
-        <input class="input-default" type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
+      <form class="form" @submit.prevent="submitForm" v-if="!error">
+        <input class="input-default" type="text" placeholder="Введите логин" v-model="email"/>
+        <input class="input-default" type="password" placeholder="Введите пароль" v-model="password"/>
         <ButtonDefault type="submit">Авторизироваться</ButtonDefault>
       </form>
-      <form class="form" @submit.prevent="login" v-else>
-        <input class="input-error" type="text" placeholder="Введите логин" v-model="userlogin.email"/>
-        <input class="input-error" type="password" placeholder="Введите пароль" v-model="userlogin.password"/>
+      <form class="form" @submit.prevent="submitForm" v-else>
+        <input class="input-error" type="text" placeholder="Введите логин" v-model="email"/>
+        <input class="input-error" type="password" placeholder="Введите пароль" v-model="password"/>
         <p class="error" v-if="error">{{ error }}</p>
         <ButtonDefault type="submit">Авторизироваться</ButtonDefault>
       </form>
@@ -45,6 +39,7 @@ async function login() {
     </div>
   </section>
 </template>
+
 
 <style scoped>
 .authorization{

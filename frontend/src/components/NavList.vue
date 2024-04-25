@@ -1,14 +1,17 @@
 <script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { logout } from "@/api/logout.js";
+
 import Navitem from "@/components/Navitem.vue";
 
-import {computed, ref} from "vue";
-import { useStore } from 'vuex';
-const store = useStore();
-const setToken = computed(() => store.getters.setToken);
+const router = useRouter();
+const setToken = ref(localStorage.getItem('token'));
 
-const cart = ref([]);
-async function logout() {
-  await store.dispatch('logout');
+async function handleLogout() {
+  await logout();
+  setToken.value = false;
+  router.push('/authorization');
 }
 </script>
 

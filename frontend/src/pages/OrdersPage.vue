@@ -2,18 +2,25 @@
 import ProductList from "@/components/ProductList.vue";
 import ProductItemOrder from "@/components/ProductItemOrder.vue";
 import SitebarApp from "@/components/SitebarApp.vue";
+import MessageApp from "@/components/MessageApp.vue";
 
 import {onMounted, ref} from "vue";
-import {useStore} from "vuex";
-import MessageApp from "@/components/MessageApp.vue";
-const store = useStore();
+import {getOrder} from "@/api/getOrder.js";
 
 const order = ref([]);
 
+const renderOrder = async () => {
+  try {
+    order.value = await getOrder();
+  } catch (error) {
+    console.error("Error rendering order:", error);
+  }
+};
+
 onMounted(async () => {
-  await store.dispatch('getOrder');
-  order.value = store.getters.getOrder;
+  await renderOrder();
 });
+
 </script>
 
 <template>

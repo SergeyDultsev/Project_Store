@@ -6,38 +6,37 @@ import SitebarApp from "@/components/SitebarApp.vue";
 import MessageApp from "@/components/MessageApp.vue";
 
 import {onMounted, ref} from "vue";
-import {useStore} from "vuex";
-
-const store = useStore();
-
-import {useRouter} from "vue-router";
-
-const router = useRouter();
+import {addToCart, deleteFromCart, getProductsCart} from "@/api/getCard.js";
 
 const cart = ref([]);
 const quantityProduct = ref(null);
 const totalPrice = ref(null);
 
-async function renderCart() {
-  await store.dispatch("getProductsCart");
-  cart.value = store.getters.getCart;
-  quantityProduct.value = cart.value.length;
-  totalPrice.value = cart.value.reduce((total, product) => total + product.price, 0);
-}
-
-const deleteFromCart = async (productId) => {
-  await store.dispatch("deleteToCart", productId);
-  await renderCart();
+const renderCart = async () => {
+  try {
+    const cartData = await getProductsCart();
+    cart.value = cartData;
+    quantityProduct.value = cartData.length;
+    totalPrice.value = cartData.reduce((total, product) => total + product.price, 0);
+  } catch (error) {
+    console.error("Error rendering cart:", error);
+  }
 };
 
-const addToOrder = async () => {
+const deleteFromCart = async (productId) => {
   try {
-    await store.dispatch("addToOrder");
-    await store.dispatch("getProductsCart");
-    cart.value = store.getters.getCart;
-    router.push('/order');
+    await deleteFromCart(productId);
+    await renderCart();
   } catch (error) {
-    console.error("Error adding order:", error);
+    console.error("Error deleting product from cart:", error);
+  }
+};
+
+const addToOrder = async (productId) => {
+  try {
+    await addToCart(productId);
+  } catch (error) {
+    console.error("Error adding to order:", error);
   }
 };
 
@@ -45,6 +44,7 @@ onMounted(async () => {
   await renderCart();
 });
 </script>
+
 
 <template>
   <SitebarApp></SitebarApp>

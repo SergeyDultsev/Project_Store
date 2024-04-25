@@ -4,15 +4,20 @@ import ProductItemCatalog from "@/components/ProductItemCatalog.vue";
 import SitebarApp from "@/components/SitebarApp.vue";
 
 import {onMounted, ref} from "vue";
-
-import {useStore} from "vuex";
-const store = useStore();
+import {getProductsCatalog} from "@/api/getCatalog.js";
 
 const catalog = ref([]);
 
+const renderCatalog = async () => {
+  try {
+    catalog.value = await getProductsCatalog();
+  } catch (error) {
+    console.error("Error rendering catalog:", error);
+  }
+};
+
 onMounted(async () => {
-  await store.dispatch('getProductsCatalog');
-  catalog.value = store.getters.getCatalog;
+  await renderCatalog();
 });
 </script>
 

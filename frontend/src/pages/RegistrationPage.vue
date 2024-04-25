@@ -1,12 +1,8 @@
 <script setup>
 import ButtonDefault from "@/components/ui/buttons/ButtonDefault.vue";
+import {registerUser} from "@/api/registration.js";
 
-import {computed} from "vue";
-
-import {useStore} from "vuex";
-const store = useStore()
-
-const error = computed(() => store.getters.setError);
+const registrationError = null;
 
 const userRegister = {
   fio: null,
@@ -15,7 +11,12 @@ const userRegister = {
 }
 
 async function register() {
-  await store.dispatch("register", userRegister);
+  try {
+    await registerUser(userRegister.value);
+    registrationError.value = null;
+  } catch (error) {
+    registrationError.value = error.message;
+  }
 }
 </script>
 
@@ -23,7 +24,7 @@ async function register() {
   <section class="page">
     <div class="registartion">
       <h2 class="page__tilte">Регистраиция</h2>
-      <form class="form" @submit.prevent="register" v-if="!error">
+      <form class="form" @submit.prevent="register" v-if="!registrationError">
         <input class="input-default" type="text" placeholder="Введите ФИО" v-model="userRegister.fio" required/>
         <input class="input-default" type="text" placeholder="Введите логин" v-model="userRegister.email" required/>
         <input class="input-default" type="password" placeholder="Введите пароль" v-model="userRegister.password" required/>
@@ -33,7 +34,7 @@ async function register() {
         <input class="input-error" type="text" placeholder="Введите ФИО" v-model="userRegister.fio" required/>
         <input class="input-error" type="text" placeholder="Введите логин" v-model="userRegister.email" required/>
         <input class="input-error" type="password" placeholder="Введите пароль" v-model="userRegister.password" required/>
-        <p class="error">{{ error }}</p>
+        <p class="error">{{ registrationError }}</p>
         <ButtonDefault type="submit">Зарегистрироваться</ButtonDefault>
       </form>
       <a href="#" @click="$router.push('/authorization')">У вас уже есть аккаунт?</a>
@@ -42,6 +43,20 @@ async function register() {
   </section>
 </template>
 
+<style scoped>
+.registartion{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+</style>
 <style scoped>
 .registartion{
   display: flex;
